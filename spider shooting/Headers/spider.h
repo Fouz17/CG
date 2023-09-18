@@ -1,6 +1,5 @@
 #define SPIDER 1
 
-
 #ifndef HEADER
 #include "Headers.h"
 #endif
@@ -33,7 +32,7 @@ Spider::Spider() {}
 Spider::Spider(Point2 pos)
 {
     isMoving = true;
-    spiderSpeed = 2.0f; // Adjust spider's speed as needed
+    spiderSpeed = 0.1f; // Adjust spider's speed as needed
     theta = 0.0;
     rateOfChange = 1.0;
     this->pos_X = pos.getX();
@@ -51,6 +50,7 @@ void Spider::die() {}
 
 void Spider::changePosition(float dx, float dy)
 {
+    // cout << "CHANGING to x:{" << dx << "} y:{" << dy << "}" << endl;
     this->pos_X += dx;
     this->pos_Y += dy;
 }
