@@ -26,6 +26,7 @@ public:
     void resetPosition();
     void die();
     void render();
+    void restart(Point2 pos);
 };
 
 Spider::Spider() {}
@@ -45,6 +46,13 @@ Spider::Spider(Point2 pos)
         pix[i].readBMPFile(fname[i], 1);
         pix[i].setChromaKey(192, 192, 192);
     }
+}
+
+void Spider::restart(Point2 pos)
+{
+    this->pos_X = pos.getX();
+    this->pos_Y = pos.getY();
+    isMoving = true;
 }
 
 void Spider::die() {}

@@ -69,7 +69,6 @@ void myDisplay(void)
     }
     else if (!spider.isMoving)
     {
-        cout << "playing" << endl;
         PlaySoundA("Audio/music.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
     }
     else
@@ -78,7 +77,7 @@ void myDisplay(void)
     }
     // Check if the spider is out of bounds, and change its direction if needed
 
-    if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols)
+    if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols - 30)
     {
         cout << "X reversed" << endl;
         xM = xM * -1;
@@ -106,6 +105,14 @@ void myKeyboard(int key, int x, int y)
         fired = true;
         isUpKeyPressed = true;
         break;
+
+    case GLUT_KEY_F10:
+        if (!spider.isMoving)
+        {
+            bullet.reset();
+            spider.restart(Point2(0, 0));
+            break;
+        }
     }
 }
 
