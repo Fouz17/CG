@@ -17,7 +17,7 @@ public:
     {
         cout << "Forward" << endl;
         // Move the bullet upward (in the y-axis direction)
-        posY += 0.5;//speed;
+        posY += 0.8;//speed;
     }
 
     void reset()

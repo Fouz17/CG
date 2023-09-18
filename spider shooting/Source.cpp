@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string>
+#include <MMSystem.h>
 // #include "Headers/pixMap.h"
 // #include "Headers/point.h"
 // #include "Headers/spider.h"
@@ -44,6 +45,11 @@ void myDisplay(void)
             bullet.reset();
             fired = false;
         }
+        else if ((bullet.posY > spider.pos_Y && bullet.posY < spider.pos_Y + spider.pix[0].nRows) && (bullet.posX > spider.pos_X && bullet.posX < spider.pos_X + spider.pix[0].nCols))
+        {
+            fired = false;
+            spider.isMoving = false;
+        }
         else
         {
             bullet.update(); // Move the bullet upwards
@@ -57,15 +63,20 @@ void myDisplay(void)
     xP = distribution(gen) * xM;
     yP = distribution(gen) * yM;
 
-    spider.changePosition(xP, yP);
-
-    // Check if the spider is out of bounds, and change its direction if needed
-    if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols ||
-        spider.pos_Y < 0 || spider.pos_Y > screenHeight)
+    if (spider.pos_X > screenWidth || spider.pos_Y > screenHeight)
     {
-        // cout << spider.pos_X << endl;
-        spider.theta += (3.14159 / 4); // Reverse direction when hitting the screen boundary
+        spider.resetPosition();
     }
+    else if (!spider.isMoving)
+    {
+        cout << "playing" << endl;
+        PlaySoundA("Audio/music.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
+    }
+    else
+    {
+        spider.changePosition(xP, yP);
+    }
+    // Check if the spider is out of bounds, and change its direction if needed
 
     if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols)
     {
@@ -91,6 +102,7 @@ void myKeyboard(int key, int x, int y)
     switch (key)
     {
     case GLUT_KEY_UP:
+        PlaySoundA("shoot/music.wav", NULL, SND_ASYNC | SND_FILENAME | SND_LOOP);
         fired = true;
         isUpKeyPressed = true;
         break;

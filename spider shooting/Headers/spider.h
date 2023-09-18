@@ -23,6 +23,7 @@ public:
     Spider();
     Spider(Point2 pos);
     void changePosition(float dx, float dy);
+    void resetPosition();
     void die();
     void render();
 };
@@ -53,6 +54,13 @@ void Spider::changePosition(float dx, float dy)
     // cout << "CHANGING to x:{" << dx << "} y:{" << dy << "}" << endl;
     this->pos_X += dx;
     this->pos_Y += dy;
+}
+
+void Spider::resetPosition()
+{
+    // cout << "CHANGING to x:{" << dx << "} y:{" << dy << "}" << endl;
+    this->pos_X = 0;
+    this->pos_Y = 0;
 }
 
 void Spider::render()
