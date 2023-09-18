@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <Windows.h>
+#include <random>
 #include <stdio.h>
 #include <math.h>
 #include <string>
@@ -14,10 +15,19 @@
 
 using namespace std;
 
+std::random_device rd;  // Seed the random number generator
+std::mt19937 gen(rd()); // Mersenne Twister pseudo-random generator
+std::uniform_int_distribution<int> distribution(0.1, 1);
+
 int screenWidth = 640;
 int screenHeight = 480;
 bool isUpKeyPressed = false;
 bool fired = false;
+
+int xP = 0;
+int yP = 0;
+int xM = 1;
+int yM = 1;
 
 Spider spider(Point2(0, 0));
 Bullet bullet(0.0, 0.0, 5.0, 10.0); // Initial position, speed, and size
@@ -41,15 +51,31 @@ void myDisplay(void)
     }
 
     // Update the spider's position
-    spider.changePosition(spider.spiderSpeed * cos(spider.theta),
-                          spider.spiderSpeed * sin(spider.theta));
+    // spider.changePosition(spider.spiderSpeed * cos(spider.theta) * 10,
+    //                       spider.spiderSpeed * cos(spider.theta) * 10);
+
+    xP = distribution(gen) * xM;
+    yP = distribution(gen) * yM;
+
+    spider.changePosition(xP, yP);
 
     // Check if the spider is out of bounds, and change its direction if needed
     if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols ||
         spider.pos_Y < 0 || spider.pos_Y > screenHeight)
     {
-        cout << spider.pos_X << endl;
-        spider.theta += 3.14159; // Reverse direction when hitting the screen boundary
+        // cout << spider.pos_X << endl;
+        spider.theta += (3.14159 / 4); // Reverse direction when hitting the screen boundary
+    }
+
+    if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols)
+    {
+        cout << "X reversed" << endl;
+        xM = xM * -1;
+    }
+    else if (spider.pos_Y < 0 || spider.pos_Y > screenHeight - spider.pix[0].nRows)
+    {
+        cout << "Y reversed" << endl;
+        yM = yM * -1;
     }
 
     // Render the spider and bullet

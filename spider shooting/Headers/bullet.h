@@ -17,13 +17,7 @@ public:
     {
         cout << "Forward" << endl;
         // Move the bullet upward (in the y-axis direction)
-        posY += speed;
-    }
-
-    void fire()
-    {
-        this->fired = true;
-        this->firing(0, 0, 480);
+        posY += 0.5;//speed;
     }
 
     void reset()
@@ -33,15 +27,6 @@ public:
         posY = 15;
     }
 
-    void firing(float spiderX, float spiderY, int screenHeight)
-    {
-        while (this->posY < screenHeight)
-        {
-            this->posY += 1;
-        }
-        this->fired = false;
-        // this->posY = 15;
-    }
 
     void render()
     {
