@@ -15,14 +15,14 @@ public:
 
     void update()
     {
-        cout << "Forward" << endl;
+        // cout << "Forward" << endl;
         // Move the bullet upward (in the y-axis direction)
         posY += 2;//speed;
     }
 
     void reset()
     {
-        cout << "Reset" << endl;
+        // cout << "Reset" << endl;
         // Move the bullet upward (in the y-axis direction)
         posY = 15;
     }

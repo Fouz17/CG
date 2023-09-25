@@ -79,12 +79,12 @@ void myDisplay(void)
 
     if (spider.pos_X < 0 || spider.pos_X > screenWidth - spider.pix[0].nCols - 30)
     {
-        cout << "X reversed" << endl;
+        // cout << "X reversed" << endl;
         xM = xM * -1;
     }
     else if (spider.pos_Y < 0 || spider.pos_Y > screenHeight - spider.pix[0].nRows)
     {
-        cout << "Y reversed" << endl;
+        // cout << "Y reversed" << endl;
         yM = yM * -1;
     }
 
