@@ -71,7 +71,7 @@ void myDisplay(void)
     const int numMotifs = 12;
     const int centerX = 300; // X-coordinate of the center of the circle
     const int centerY = 300; // Y-coordinate of the center of the circle
-    const int radius = 100;
+    const int radius = 120;
     const int motifWidth = 200;
     const int motifHeight = 200;
     // Radius of the circular arrangement
@@ -83,7 +83,7 @@ void myDisplay(void)
         int y = centerY + static_cast<int>(radius * sin(angle));
         // cout << "X: " << x << " Y: " << y << " Angle: " << angle << std::endl;
 
-        glViewport(x, y, 64, 64);
+        glViewport(x, y, 164, 164);
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadIdentity(); // Load identity matrix before transformations

@@ -1,8 +1,8 @@
 # Define the command you want to run
 $command = "g++"
 $output = "-o main"
-$headers = "Canvas.h"
-$inputFile = ".\dinoRotated.cpp"
+$headers = ""
+$inputFile = ".\maze.cpp"
 $links = "-lfreeglut -lglew32 -lglu32 -lopengl32"
 
 echo "$command $output $inputFile $links"
